@@ -2,13 +2,13 @@
 
     <div class="flex flex-row">
         <div class="mr-4 flex items-center">@flag($match->teamHome->code, 'w-4')</div>
-        <div class="flex-grow">{{ $match->teamHome->name }}</div>
+        <div class="flex-grow">{{ __($match->teamHome->name) }}</div>
         <div class="w-4">{{ $match->userPrediction?->score_home ?? '-' }}</div>
     </div>
 
     <div class="flex flex-row">
         <div class="mr-4 flex items-center">@flag($match->teamAway->code, 'w-4')</div>
-        <div class="flex-grow">{{ $match->teamAway->name }}</div>
+        <div class="flex-grow">{{ __($match->teamAway->name) }}</div>
         <div class="w-4">{{ $match->userPrediction?->score_away ?? '-' }}</div>
     </div>
 
