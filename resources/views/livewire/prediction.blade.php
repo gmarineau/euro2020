@@ -12,7 +12,7 @@
                 <p class="mb-2 uppercase tracking-wide text-sm font-bold text-gray-700">{{ $match->date->format('l jS - H:i') }}</p>
                 <div class="text-3xl text-gray-900 flex flex-row">
                     <div class="mr-4 flex items-center">@flag($match->teamHome->code, 'w-6')</div>
-                    <div class="flex-grow">{{ $match->teamHome->name }}</div>
+                    <div class="flex-grow">{{ __($match->teamHome->name) }}</div>
                     <div class="w-8 flex items-center justify-center" wire:click="decreaseScore('home')">
                         <x-icon name="heroicon-o-minus-sm" class="text-euro-darkest w-6 h-6"></x-icon>
                     </div>
@@ -23,7 +23,7 @@
                 </div>
                 <div class="text-3xl text-gray-900 flex flex-row">
                     <div class="mr-4 flex items-center">@flag($match->teamAway->code, 'w-6')</div>
-                    <div class="flex-grow">{{ $match->teamAway->name }}</div>
+                    <div class="flex-grow">{{ __($match->teamAway->name) }}</div>
                     <div class="w-8 flex items-center justify-center" wire:click="decreaseScore('away')">
                         <x-icon name="heroicon-o-minus-sm" class="text-euro-darkest w-6 h-6"></x-icon>
                     </div>
@@ -46,12 +46,12 @@
                 <p class="mb-2 uppercase tracking-wide text-sm font-bold text-gray-700">{{ $match->date->format('l jS - H:i') }}</p>
                 <div class="text-3xl text-gray-900 flex flex-row">
                     <div class="mr-4 flex items-center">@flag($match->teamHome->code, 'w-6')</div>
-                    <div class="flex-grow">{{ $match->teamHome->name }}</div>
+                    <div class="flex-grow">{{ __($match->teamHome->name) }}</div>
                     <div class="w-8 flex items-center justify-center">{{ $match->userPrediction->score_home ?? 0}}</div>
                 </div>
                 <div class="text-3xl text-gray-900 flex flex-row">
                     <div class="mr-4 flex items-center">@flag($match->teamAway->code, 'w-6')</div>
-                    <div class="flex-grow">{{ $match->teamAway->name }}</div>
+                    <div class="flex-grow">{{ __($match->teamAway->name) }}</div>
                     <div class="w-8 flex items-center justify-center"><span>{{ $match->userPrediction->score_away ?? 0}}</span></div>
                 </div>
                 <p class="mt-2 text-gray-500 tracking-tighter uppercase text-sm">{{ $match->stadium->name }} - {{ $match->stadium->city }}</p>
