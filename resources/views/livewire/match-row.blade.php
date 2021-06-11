@@ -2,17 +2,17 @@
 
     <div class="flex flex-row">
         <div class="mr-4 flex items-center">@flag($match->teamHome->code, 'w-4')</div>
-        <div class="flex-grow">{{ $match->teamHome->name }}</div>
+        <div class="flex-grow">{{ __($match->teamHome->name) }}</div>
         @if ($match->started)
             <div class="w-4">{{ $match->score_home }}</div>
         @else
-            <div class="w-16 uppercase text-center">{{ $match->date->format('D j') }}</div>
+            <div class="w-16 uppercase text-center">{{ $match->date->formatLocalized('%a %e') }}</div>
         @endif
     </div>
 
     <div class="flex flex-row">
         <div class="mr-4 flex items-center">@flag($match->teamAway->code, 'w-4')</div>
-        <div class="flex-grow">{{ $match->teamAway->name }}</div>
+        <div class="flex-grow">{{ __($match->teamAway->name) }}</div>
         @if ($match->started)
             <div class="w-4">{{ $match->score_away }}</div>
         @else
