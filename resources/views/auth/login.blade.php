@@ -53,7 +53,7 @@
                         class="w-full bg-euro-darkest hover:bg-euro-dark text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
                         type="submit"
                     >
-                        Signup
+                        {{ __('Signup') }}
                     </button>
                 </form>
             </div>
@@ -64,7 +64,7 @@
                         class="w-full bg-blue-800 hover:bg-blue-900 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
                         type="submit"
                     >
-                        Login with Facebook
+                        {{ __('Login with Facebook') }}
                     </button>
                 </form>
             </div>
