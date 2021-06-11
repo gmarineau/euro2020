@@ -8,7 +8,7 @@
 
     <div class="bg-white rounded-lg">
         <div class="p-4">
-            <p class="mb-2 uppercase tracking-wide text-sm font-bold text-gray-700">{{ $match->date->format('l jS - H:i') }}</p>
+            <p class="mb-2 uppercase tracking-wide text-sm font-bold text-gray-700">{{ $match->date->formatLocalized('%A %e %B - %H:%M') }}</p>
             <div class="text-3xl text-gray-900 flex flex-row">
                 <div class="mr-4 flex items-center">@flag($match->teamHome->code, 'w-6')</div>
                 <div class="flex-grow">{{ __($match->teamHome->name) }}</div>
