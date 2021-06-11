@@ -45,7 +45,7 @@ RUN set -x \
         opcache \
         pcntl \
         redis \
-        # intl \
+        intl \
         1>/dev/null \
     # && pecl install -o redis 1>/dev/null \
     # && echo 'extension=redis.so' > ${PHP_INI_DIR}/conf.d/redis.ini \
