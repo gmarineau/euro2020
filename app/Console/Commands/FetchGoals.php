@@ -63,6 +63,7 @@ class FetchGoals extends Command
     private function getLiveGames(): Collection
     {
         $games = Game::whereBetween('date', [now()->sub('150 minutes'), now()])->get();
+        $games = Game::whereIn('id', [3])->get();
 
         if ($games->isEmpty()) {
             Log::info('No live games');
