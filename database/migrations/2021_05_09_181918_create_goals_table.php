@@ -22,7 +22,7 @@ class CreateGoalsTable extends Migration
 
             $table->tinyInteger('minute');
             $table->string('scored_by');
-            $table->string('link');
+            $table->string('link')->nullable();
 
             $table->timestamps();
         });
