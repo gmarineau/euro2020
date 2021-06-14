@@ -59,33 +59,18 @@ class Game extends Model
 
     public function goals()
     {
-        return $this->hasMany('App\Models\Goal');
+        return $this->hasMany('App\Models\Goal')
+            ->orderBy('minute');
     }
 
     public function getScoreHomeAttribute()
     {
-        static $score = [];
-
-        if (isset($score[$this->id])) {
-            return $score[$this->id];
-        }
-
-        $score[$this->id] = $this->goalsHome->count();
-
-        return $score[$this->id];
+        return $this->goalsHome->count();
     }
 
     public function getScoreAwayAttribute()
     {
-        static $score = [];
-
-        if (isset($score[$this->id])) {
-            return $score[$this->id];
-        }
-
-        $score[$this->id] = $this->goalsAway->count();
-
-        return $score[$this->id];
+        return $this->goalsAway->count();
     }
 
     public function getShowPredictionsAttribute()
