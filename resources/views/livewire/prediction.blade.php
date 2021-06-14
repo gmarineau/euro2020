@@ -41,7 +41,7 @@
         <div class="bg-white rounded-lg">
             <div class="p-4">
 
-                <x-banner-danger message="Predictions for this match are closed"></x-banner-danger>
+                <x-banner-danger :message="__('Predictions for this match are closed')"></x-banner-danger>
 
                 <p class="mb-2 uppercase tracking-wide text-sm font-bold text-gray-700">{{ $match->date->format('l jS - H:i') }}</p>
                 <div class="text-3xl text-gray-900 flex flex-row">
