@@ -43,45 +43,38 @@ class FetchGoals extends Command
      */
     public function handle()
     {
-        // Find live match
         $games = $this->getLiveGames();
 
-        // Query match status
-        $games->each(function ($game) {
-            $response = Http::withHeaders([
-                'X-Auth-Token' => config('services.football_data_api.auth_token'),
-            ])->get('http://api.football-data.org/v2/matches/'. $game->football_data_match_id);
-
-            $match = $response->json();
-
-            $this->updateGoals($game, $match['match']['goals']);
-        });
+        $games->each(fn ($game) => $this->updateGoals($game, $this->getLiveMatchGoals($game)));
 
         return 0;
     }
 
     private function getLiveGames(): Collection
     {
-        $games = Game::whereBetween('date', [now()->sub('240 minutes'), now()])->get();
+        return Game::whereBetween('date', [now()->sub('150 minutes'), now()])->get();
+    }
 
-        if ($games->isEmpty()) {
-            Log::info('No live games');
-        } else {
-            $games->each(fn ($game) => Log::info('Found game: '. $game->id .' | '. $game->date .' | '. $game->teamHome->name .' | '. $game->teamAway->name));
-        }
+    private function getLiveMatchGoals(Game $game): array
+    {
+        $response = Http::withHeaders([
+            'X-Auth-Token' => config('services.football_data_api.auth_token'),
+        ])->get('http://api.football-data.org/v2/matches/'. $game->football_data_match_id);
 
-        return $games;
+        $match = $response->json();
+
+        return $match['match']['goals'];
     }
 
     private function updateGoals(Game $game, array $goals): void
     {
         $goals = collect($goals);
 
+        $game->goals()->delete();
+
         if ($goals->isEmpty()) {
             return;
         }
-
-        $game->goals()->delete();
 
         $goals->each(fn($goal) => $game->goals()->create([
             'minute' => $goal['minute'],
